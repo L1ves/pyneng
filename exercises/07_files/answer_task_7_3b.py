@@ -16,22 +16,7 @@ Enter VLAN number: 10
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
-
-user_input = input("Enter VLAN number: ")
-results = []
-with open("CAM_table.txt") as f:
-    for line in f:
-        line = line.split()
-        template = '{:15} {:15} {:15}'
-        if line and line[0].isdigit():
-            vlan,mac,_,port = line
-            line = vlan,mac,port
-            results.append([int(vlan),mac,port])
-
-for vlan, mac,port in sorted(results):
-	if int(user_input) == vlan:
-		print(f"{vlan:<9}{mac:20}{port}")
-		"""
+"""
 user_vlan = input("Enter VLAN number: ")
 
 with open("CAM_table.txt", "r") as conf:

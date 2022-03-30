@@ -40,3 +40,14 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+results = []
+with open("CAM_table.txt") as f:
+    for line in f:
+        line = line.split()
+        if line and line[0].isdigit():
+            vlan,mac,_,port = line
+            line = vlan,mac,port
+            results.append([int(vlan),mac,port])
+
+for vlan, mac,port in sorted(results):
+    print(f"{vlan:<9}{mac:20}{port}")

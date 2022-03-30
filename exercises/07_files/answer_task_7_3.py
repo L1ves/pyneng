@@ -18,13 +18,12 @@
 
 
 Ограничение: Все задания надо выполнять используя только пройденные темы.
-		
+
 """
-result = {}
-with open("CAM_table.txt") as f:
-	for line in f:
-		line = line.split()
-		template = '{:15} {:15} {:15}'
-		if line and line[0].isdigit():
-			vlan,mac,_,ports = line
-			print(template.format(vlan,mac,ports))
+
+with open("CAM_table.txt") as conf:
+    for line in conf:
+        words = line.split()
+        if words and words[0].isdigit():
+            vlan, mac, _, interface = words
+            print(f"{vlan:9}{mac:20}{interface}")

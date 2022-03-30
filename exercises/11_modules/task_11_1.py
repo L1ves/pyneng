@@ -43,7 +43,7 @@ def parse_cdp_neighbors(command_output):
     и с файлами и с выводом с оборудования.
     Плюс учимся работать с таким выводом.
     """
-
+    device_id, local_interface, holdtime, capability, platform, port_id = command_output
 
 if __name__ == "__main__":
     with open("sh_cdp_n_sw1.txt") as f:
