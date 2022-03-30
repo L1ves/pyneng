@@ -48,7 +48,7 @@ access_config_2 и убедиться, что в итоговом списке �
 
 """
 
-access_mode_template = [
+access_template = [
     "switchport mode access",
     "switchport access vlan",
     "switchport nonegotiate",
@@ -64,6 +64,11 @@ access_config_2 = {
     "FastEthernet0/09": 107,
 }
 
+intf_vlan_mapping = {
+    'FastEthernet0/12':10,
+    'FastEthernet0/14':11,
+    'FastEthernet0/16':17,
+}
 
 def generate_access_config(intf_vlan_mapping, access_template):
     """
@@ -85,14 +90,14 @@ def generate_access_config(intf_vlan_mapping, access_template):
 
     result = []
 
-    for key in access_template:
-        result.append(f'Interface {key}')
-        for command in intf_vlan_mapping:
+    for key, value in intf_vlan_mapping.items():
+        result.append(f'interface {key}')
+        for command in access_template:
             if command.endswith("access vlan"):
-                result.append(command + str(access_template[key]))
+                result.append(f"{command} {value}")
             else:
-                result.append(f'{command}')
+                result.append(f"{command}")
 
     return result
 
-print(generate_access_config(intf_vlan_mapping=access_mode_template, access_template=access_config))
+print(generate_access_config(intf_vlan_mapping, access_template))
